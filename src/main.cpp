@@ -5,6 +5,7 @@
 #include "httplib.h"
 #include "httputil.h"
 #include "ImageMagick-7/Magick++.h"
+#include "kmeans/kmeans.h"
 
 #define VERSION "0.1.0"
 
@@ -45,6 +46,16 @@ int main(int argc, char** argv) {
         } catch(std::exception& e) {
             httputil::bad_request(res, "invalid url");
         }
+    });
+
+    srv.Get(R"(/color/(\w+))", [&](const Request& req, Response& res) {
+        std::string color = req.matches[1];
+        auto valid = imagegen::utils::is_valid_hex(color);
+        if (!valid) {
+            httputil::bad_request(res, "Invalid color parameter");
+            return;
+        }
+        imagegen::utils::encode(res, imagegen::draw_color(color));
     });
 
     srv.listen("localhost", 3000);
