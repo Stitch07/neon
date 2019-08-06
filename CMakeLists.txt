@@ -3,7 +3,7 @@ project(neon)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(${PROJECT_NAME} src/main.cpp src/imagegen.cpp src/imagegen.h src/httputil.h src/httputil.cpp src/kmeans/kmeans.cpp src/kmeans/kmeans.h)
+add_executable(${PROJECT_NAME} src/main.cpp src/imagegen.cpp src/imagegen.h src/httputil.h src/httputil.cpp)
 
 target_link_libraries(${PROJECT_NAME} fmt)
 include_directories(httplib)
