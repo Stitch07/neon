@@ -5,7 +5,6 @@
 #include "httplib.h"
 #include "httputil.h"
 #include "ImageMagick-7/Magick++.h"
-#include "kmeans/kmeans.h"
 
 #define VERSION "0.1.0"
 
